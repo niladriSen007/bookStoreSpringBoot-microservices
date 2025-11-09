@@ -1,0 +1,30 @@
+name: Catalogue Service CI/CD Pipeline
+
+on:
+  push:
+    paths:
+      - 'catalogue-service/**'
+    branches:
+      - '**'
+jobs:
+  build:
+    name: Build and Test Catalogue Service
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./catalogue-service
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Build with maven
+        run: ./mvnw -ntp verify
