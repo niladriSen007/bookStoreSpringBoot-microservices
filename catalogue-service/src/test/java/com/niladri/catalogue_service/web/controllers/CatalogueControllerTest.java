@@ -12,7 +12,8 @@ class CatalogueControllerTest extends AbstractIt {
 
     @Test
     void shouldReturnProducts() {
-        RestAssured.given().contentType(ContentType.JSON)
+        RestAssured.given()
+                .contentType(ContentType.JSON)
                 .when()
                 .get("/core")
                 .then()
@@ -20,8 +21,6 @@ class CatalogueControllerTest extends AbstractIt {
                 .body("data", Matchers.hasSize(5))
                 .body("totalElements", Matchers.is(15))
                 .body("totalPages", Matchers.is(3))
-                .body("pageNumber", Matchers.is(1))
-        ;
+                .body("pageNumber", Matchers.is(1));
     }
-
 }

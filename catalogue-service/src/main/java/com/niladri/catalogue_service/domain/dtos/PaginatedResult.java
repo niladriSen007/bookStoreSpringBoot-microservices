@@ -10,6 +10,4 @@ public record PaginatedResult<T>(
         boolean isFirst,
         boolean isLast,
         boolean hasNext,
-        boolean hasPrevious
-) {
-}
+        boolean hasPrevious) {}

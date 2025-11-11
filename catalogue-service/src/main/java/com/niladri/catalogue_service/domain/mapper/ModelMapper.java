@@ -10,8 +10,7 @@ public class ModelMapper {
                 productDto.name(),
                 productDto.description(),
                 productDto.imageUrl(),
-                productDto.price()
-        );
+                productDto.price());
     }
 
     public static ProductDto mapToProductDto(Product product) {
@@ -20,7 +19,6 @@ public class ModelMapper {
                 product.getName(),
                 product.getDescription(),
                 product.getImageUrl(),
-                product.getPrice()
-        );
+                product.getPrice());
     }
 }

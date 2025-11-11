@@ -1,10 +1,7 @@
 package com.niladri.catalogue_service.web.exceptions;
 
-import lombok.Data;
-import org.springframework.http.HttpStatus;
-
 import java.time.LocalDateTime;
-
+import org.springframework.http.HttpStatus;
 
 public class ApiError {
     private LocalDateTime timestamp;
