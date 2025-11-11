@@ -23,4 +23,19 @@ class CatalogueRepositoryTest {
         var products = catalogueRepository.findAll();
         Assertions.assertThat(products).hasSize(15);
     }
+
+    @Test
+    void shouldGetProductByCode() {
+        var productOpt = catalogueRepository.findByCode("P100");
+        Assertions.assertThat(productOpt).isPresent();
+        var product = productOpt.get();
+        Assertions.assertThat(product.getName()).isEqualTo("The Hunger Games");
+        Assertions.assertThat(product.getPrice()).isEqualByComparingTo("34.00");
+    }
+
+    @Test
+    void shouldReturnEmptyForNonExistingProductCode() {
+        var productOpt = catalogueRepository.findByCode("NON_EXISTING_CODE");
+        Assertions.assertThat(productOpt).isNotPresent();
+    }
 }
