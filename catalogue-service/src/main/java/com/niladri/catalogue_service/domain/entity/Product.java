@@ -1,29 +1,26 @@
 package com.niladri.catalogue_service.domain.entity;
 
-
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Entity
-@Table(name = "products",indexes = {
-        @Index(name="idx_product_code", columnList = "code")
-})
+@Table(
+        name = "products",
+        indexes = {@Index(name = "idx_product_code", columnList = "code")})
 public class Product {
     public Product() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id_generator")
-    @SequenceGenerator(name = "product_id_generator", sequenceName = "product_id_seq",allocationSize = 10)
+    @SequenceGenerator(name = "product_id_generator", sequenceName = "product_id_seq", allocationSize = 10)
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message = "Product code is required")
-    private String code;
+    @NotBlank(message = "Product code is required") private String code;
 
     @NotBlank(message = "Product name is required") @Column(nullable = false)
     private String name;
@@ -33,8 +30,7 @@ public class Product {
     private String imageUrl;
 
     @DecimalMin("0.1") @Column(nullable = false)
-    @NotNull(message = "Product price is required")
-    private BigDecimal price;
+    @NotNull(message = "Product price is required") private BigDecimal price;
 
     public Product(String code, String name, String description, String imageUrl, BigDecimal price) {
         this.code = code;

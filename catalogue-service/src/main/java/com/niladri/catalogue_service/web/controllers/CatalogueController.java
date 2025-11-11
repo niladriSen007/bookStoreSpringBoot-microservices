@@ -3,13 +3,12 @@ package com.niladri.catalogue_service.web.controllers;
 import com.niladri.catalogue_service.domain.dtos.PaginatedResult;
 import com.niladri.catalogue_service.domain.dtos.ProductDto;
 import com.niladri.catalogue_service.domain.services.CatalogueService;
+import java.util.concurrent.CompletableFuture;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/core")
@@ -30,15 +29,12 @@ class CatalogueController {
         Sort sort = ascending ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        return catalogueService.getAllProducts(pageable)
-                .thenApply(ResponseEntity::ok);
-
+        return catalogueService.getAllProducts(pageable).thenApply(ResponseEntity::ok);
     }
 
     @GetMapping("/{code}")
     CompletableFuture<ResponseEntity<ProductDto>> getProductByCode(@PathVariable(name = "code") String code) {
-        return catalogueService.getProductByCode(code)
-                .thenApply(ResponseEntity::ok);
+        return catalogueService.getProductByCode(code).thenApply(ResponseEntity::ok);
     }
 
     @GetMapping("/products/{code}")
