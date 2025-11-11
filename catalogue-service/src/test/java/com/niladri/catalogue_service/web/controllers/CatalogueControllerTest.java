@@ -24,7 +24,6 @@ class CatalogueControllerTest extends AbstractIt {
                 .body("pageNumber", Matchers.is(1));
     }
 
-
     @Test
     void shouldGetProductByCode() {
         RestAssured.given()
