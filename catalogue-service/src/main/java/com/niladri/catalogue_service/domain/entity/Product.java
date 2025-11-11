@@ -11,7 +11,9 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "products")
+@Table(name = "products",indexes = {
+        @Index(name="idx_product_code", columnList = "code")
+})
 public class Product {
     public Product() {}
     @Id
