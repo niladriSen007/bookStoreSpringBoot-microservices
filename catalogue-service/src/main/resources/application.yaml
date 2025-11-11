@@ -2,7 +2,7 @@ spring:
   application:
     name: catalogue-service
   datasource:
-    url: jdbc:postgresql://catalogue-db:1000/catalogue_db
+    url: jdbc:postgresql://localhost:1000/catalogue_db
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -18,3 +18,7 @@ server:
   port: 8081
   shutdown:
     graceful: true
+
+catalogue:
+  page: 0
+  size: 5
